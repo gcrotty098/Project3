@@ -2,11 +2,13 @@ package Project_3;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HammingDistance {
 	
 	private final static String FILE = "Project_3/src/Mesonet.txt";
 	
+	//returns a string of all stations [hammingDistance] away from the station provided, delimited by \n
 	public static String stationsViaHammingDistance(String station, int hammingDistance)
 	{
 		String outputStations = "";
@@ -15,6 +17,7 @@ public class HammingDistance {
 		{
 			BufferedReader br = new BufferedReader(new FileReader(FILE));
 			
+			//skips the first 3 lines of the file as they aren't stations
 			for(int i = 0; i < 3; i++)
 			{
 				br.readLine();
@@ -25,6 +28,7 @@ public class HammingDistance {
 			{
 				String line = br.readLine();
 				
+				//isolates the station from the line
 				String currentStation = line.split(" ")[1];
 				
 				
@@ -52,6 +56,7 @@ public class HammingDistance {
 		{
 			BufferedReader br = new BufferedReader(new FileReader(FILE));
 			
+			//skips the first 3 lines of the file as they aren't stations
 			for(int i = 0; i < 3; i++)
 			{
 				br.readLine();
@@ -62,6 +67,7 @@ public class HammingDistance {
 			{
 				String line = br.readLine();
 				
+				//isolates station from the line
 				String currentStation = line.split(" ")[1];
 				
 				
@@ -80,6 +86,7 @@ public class HammingDistance {
 		
 		return counter;
 	}
+	
 	
 	private static int findHammingDist(String st1, String st2)
 	{
@@ -100,6 +107,45 @@ public class HammingDistance {
 		}
 		
 		return hammingDist;
+	}
+
+	//returns an arraylist of all the stations in given file
+	public static ArrayList<String> getAllStations()
+	{
+		
+		ArrayList<String> allStations = new ArrayList<String>();
+		
+		try
+		{
+			BufferedReader br = new BufferedReader(new FileReader(FILE));
+			
+			//skips the first 3 lines of the file as they aren't stations
+			for(int i = 0; i < 3; i++)
+			{
+				br.readLine();
+			}
+			
+			
+			while(br.ready())
+			{
+				String line = br.readLine();
+				
+				//isolates station from the line
+				String currentStation = line.split(" ")[1];
+				
+				//adds station to array list
+				allStations.add(currentStation);
+			}
+			
+		}
+		catch (IOException e)
+		{
+			System.out.println("Unable to open file");
+			e.printStackTrace();
+		}
+		
+		
+		return allStations;
 	}
 	
 	
