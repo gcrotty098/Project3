@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class HammingDistance {
 	
-	private final static String FILE = "Project_3/src/Mesonet.txt";
+	//Garrett: Changed path
+	private final static String FILE = "src/Mesonet.txt";
 	
 	//returns a string of all stations [hammingDistance] away from the station provided, delimited by \n
 	public static String stationsViaHammingDistance(String station, int hammingDistance)
