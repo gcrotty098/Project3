@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HammingDistance {
 	
@@ -147,6 +149,38 @@ public class HammingDistance {
 		
 		
 		return allStations;
+	}
+	
+	public static Map<String, ArrayList<String>> findAllStationsAtHammingDist(int hammingDistance)
+	{
+		Map<String, ArrayList<String>> stations = new HashMap<String, ArrayList<String>>();
+		
+		ArrayList<String> allStations = getAllStations();
+		
+		for(String x : allStations)
+		{
+			String[] stationsAtHammingDistArr = stationsViaHammingDistance(x, hammingDistance).split("\n");
+			
+			ArrayList<String> stationsAtHammDist = new ArrayList<String>();
+			
+			int cnt = 0;
+			for(String y : stationsAtHammingDistArr)
+			{
+				cnt++;
+				stationsAtHammDist.add(y);
+			}
+			
+			if(cnt != 0)
+			{
+				stations.put(x, stationsAtHammDist);
+			}
+		}
+		
+		
+		return stations;
+		
+		
+		
 	}
 	
 	
